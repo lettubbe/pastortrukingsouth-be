@@ -1,0 +1,48 @@
+{
+  "name": "trusouth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "tsc": "tsc",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "watch": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run tsc && npm run start\"",
+    "dev-watch": "node_modules\\.bin\\nodemon -e ts --exec \"npm run tsc && npm run start\"",
+    "seed:dev": "node dist/scripts/Authseeder.js",
+    "seed:postsUpdate": "node dist/scripts/seedPosts.js",
+    "migrate:suspended-to-flagged": "ts-node src/scripts/migrations/migrateSuspendedToFlagged.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "unseed:dev": "node dist/scripts/UnseedAuth.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "joi": "^18.0.1",
+    "mongoose": "^8.19.2",
+    "multer": "^2.0.2",
+    "sharp": "^0.34.4",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "@types/hpp": "^0.2.7",
+    "@types/multer": "^2.0.0",
+    "nodemon": "^3.1.10",
+    "typescript": "^5.9.3"
+  }
+}
