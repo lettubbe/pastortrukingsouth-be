@@ -4,6 +4,10 @@ import UploadResource from "../models/Reources";
 import baseResponseHandler from "../messages/BaseResponseHandler";
 import ErrorResponse from "../messages/ErrorResponse";
 
+// @route   /api/v1/reosurce/resources/photo
+// @desc    Uploads A Photo Resource
+// @access  public
+
 export const uploadPhotoResource = asyncHandler(async (req, res, next) => {
   const thumbnailImage = await uploadFileFromFields(
     req,
