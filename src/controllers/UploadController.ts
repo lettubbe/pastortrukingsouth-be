@@ -30,7 +30,7 @@ export const uploadPhotoResource = asyncHandler(async (req, res, next) => {
   }
 
   const _photo = await UploadResource.create({
-    type: "audio",
+    type: "photo",
     thumbnail: thumbnailImage,
     mediaUrl: mediaPhoto,
     authorName,

@@ -29,7 +29,7 @@ exports.uploadPhotoResource = (0, express_async_handler_1.default)((req, res, ne
         return next(new ErrorResponse_1.default(`Thumbnail and Media Photo is Required`, 400));
     }
     const _photo = yield Reources_1.default.create({
-        type: "audio",
+        type: "photo",
         thumbnail: thumbnailImage,
         mediaUrl: mediaPhoto,
         authorName,
