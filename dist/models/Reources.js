@@ -12,6 +12,9 @@ const UploadSchema = new mongoose_1.Schema({
     authorName: {
         type: String,
     },
+    text: {
+        type: String,
+    },
     content: {
         type: String,
     },

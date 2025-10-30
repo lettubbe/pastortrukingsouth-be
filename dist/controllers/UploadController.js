@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUploadedResources = exports.uploadVideoResource = exports.uploadPhotoResource = void 0;
+exports.getAllUploadedResources = exports.uploadMediaResource = exports.createTextResource = exports.uploadAudioResource = exports.uploadVideoResource = exports.uploadPhotoResource = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const fileUpload_1 = require("../lib/utils/fileUpload");
 const Reources_1 = __importDefault(require("../models/Reources"));
@@ -61,6 +61,58 @@ exports.uploadVideoResource = (0, express_async_handler_1.default)((req, res, ne
         statusCode: 200,
         success: true,
         data: _video,
+    });
+}));
+exports.uploadAudioResource = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const audio = yield (0, fileUpload_1.uploadFile)(req, next, "audio");
+    const { authorName, content, caption } = req.body;
+    if (!audio) {
+        return next(new ErrorResponse_1.default(`Audio is Required`, 400));
+    }
+    const _audio = yield Reources_1.default.create({
+        type: "audio",
+        mediaUrl: audio,
+        authorName,
+        content,
+        caption,
+    });
+    (0, BaseResponseHandler_1.default)({
+        message: `Video uploaded successfuuly`,
+        res,
+        statusCode: 200,
+        success: true,
+        data: _audio,
+    });
+}));
+exports.createTextResource = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { authorName, content, caption } = req.body;
+    const textResource = yield Reources_1.default.create({
+        type: "text",
+        authorName,
+        content,
+        caption,
+    });
+    (0, BaseResponseHandler_1.default)({
+        message: `Video uploaded successfuuly`,
+        res,
+        statusCode: 200,
+        success: true,
+        data: textResource,
+    });
+}));
+exports.uploadMediaResource = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const mediaResource = yield (0, fileUpload_1.uploadFile)(req, next, "mediaUploads");
+    if (!mediaResource) {
+        return (next(new ErrorResponse_1.default(`File Upload Failed`, 400)));
+    }
+    const { text } = req.body;
+    const uploadedResource = yield Reources_1.default.create({ type: "media", mediaUrl: mediaResource, text });
+    (0, BaseResponseHandler_1.default)({
+        message: `Upload Media Resource successfull`,
+        res,
+        statusCode: 200,
+        success: true,
+        data: uploadedResource
     });
 }));
 exports.getAllUploadedResources = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

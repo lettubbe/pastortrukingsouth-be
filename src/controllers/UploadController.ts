@@ -45,7 +45,6 @@ export const uploadPhotoResource = asyncHandler(async (req, res, next) => {
 
 export const uploadVideoResource = asyncHandler(async (req, res, next) => {
 
-
   const thumbnailImage = await uploadFileFromFields(
     req,
     next,
@@ -81,6 +80,75 @@ export const uploadVideoResource = asyncHandler(async (req, res, next) => {
     success: true,
     data: _video,
   });
+});
+
+export const uploadAudioResource = asyncHandler(async (req, res, next) => {
+
+  const audio = await uploadFile(req, next, "audio");
+
+  const { authorName, content, caption } = req.body;
+
+  if (!audio) {
+    return next(new ErrorResponse(`Audio is Required`, 400));
+  }
+
+  const _audio = await UploadResource.create({
+    type: "audio",
+    mediaUrl: audio,
+    authorName,
+    content,
+    caption,
+  });
+
+  baseResponseHandler({
+    message: `Video uploaded successfuuly`,
+    res,
+    statusCode: 200,
+    success: true,
+    data: _audio,
+  });
+});
+
+export const createTextResource = asyncHandler(async (req, res, next) => {
+
+  const { authorName, content, caption } = req.body;
+
+  const textResource = await UploadResource.create({
+    type: "text",
+    authorName,
+    content,
+    caption,
+  });
+
+  baseResponseHandler({
+    message: `Video uploaded successfuuly`,
+    res,
+    statusCode: 200,
+    success: true,
+    data: textResource,
+  });
+});
+
+export const uploadMediaResource = asyncHandler(async (req, res, next) => {
+    
+    const mediaResource = await uploadFile(req, next, "mediaUploads");
+    
+    if(!mediaResource){
+        return(next(new ErrorResponse(`File Upload Failed`, 400)));
+    }
+
+    const { text } = req.body;
+    
+    const uploadedResource = await UploadResource.create({ type: "media", mediaUrl: mediaResource, text });
+
+    baseResponseHandler({
+        message: `Upload Media Resource successfull`,
+        res,
+        statusCode: 200,
+        success: true,
+        data: uploadedResource
+    });
+
 });
 
 export const getAllUploadedResources = asyncHandler(async (req, res, next) => {

@@ -12,6 +12,9 @@ const UploadSchema = new Schema(
     authorName: {
       type: String,
     },
+    text: {
+      type: String,
+    },
     content: {
       type: String,
     },
