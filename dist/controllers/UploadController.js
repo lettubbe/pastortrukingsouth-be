@@ -77,7 +77,7 @@ exports.uploadAudioResource = (0, express_async_handler_1.default)((req, res, ne
         caption,
     });
     (0, BaseResponseHandler_1.default)({
-        message: `Video uploaded successfuuly`,
+        message: `Audio uploaded successfuuly`,
         res,
         statusCode: 200,
         success: true,

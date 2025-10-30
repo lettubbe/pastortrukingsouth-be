@@ -40,7 +40,7 @@ if (evnError.length) {
 
 // Routes
 app.get("/", (req: Request, res: Response) => {
-  res.send(`letstube Be is Up and Running In ${config.env} mode`);
+  res.send(`Trusouth API Be is Up and Running In ${config.env} mode`);
 });
 
 app.use("/api/v1", routes);
