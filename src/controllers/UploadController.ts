@@ -101,7 +101,7 @@ export const uploadAudioResource = asyncHandler(async (req, res, next) => {
   });
 
   baseResponseHandler({
-    message: `Video uploaded successfuuly`,
+    message: `Audio uploaded successfuuly`,
     res,
     statusCode: 200,
     success: true,
