@@ -65,7 +65,7 @@ if (required_env_1.default.length) {
 }
 // Routes
 app.get("/", (req, res) => {
-    res.send(`letstube Be is Up and Running In ${config_1.default.env} mode`);
+    res.send(`Trusouth API Be is Up and Running In ${config_1.default.env} mode`);
 });
 app.use("/api/v1", routes_1.default);
 // Handle 404 errors

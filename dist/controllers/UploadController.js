@@ -18,6 +18,9 @@ const fileUpload_1 = require("../lib/utils/fileUpload");
 const Reources_1 = __importDefault(require("../models/Reources"));
 const BaseResponseHandler_1 = __importDefault(require("../messages/BaseResponseHandler"));
 const ErrorResponse_1 = __importDefault(require("../messages/ErrorResponse"));
+// @route   /api/v1/reosurce/resources/photo
+// @desc    Uploads A Photo Resource
+// @access  public
 exports.uploadPhotoResource = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const thumbnailImage = yield (0, fileUpload_1.uploadFileFromFields)(req, next, `thumbnails/`, "thumbnail");
     const mediaPhoto = yield (0, fileUpload_1.uploadFileFromFields)(req, next, `mediaPhoto/`, "photo");
